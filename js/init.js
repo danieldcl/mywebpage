@@ -138,8 +138,10 @@
 ------------------------------------------------------*/
 
    $('form#contactForm button.submit').click(function() {
-
+          $('.submit').attr("disabled", true);
+          $('#message-success').fadeOut();
       $('#image-loader').fadeIn();
+
 
       var contactName = $('#contactForm #contactName').val();
       var contactEmail = $('#contactForm #contactEmail').val();
@@ -158,16 +160,20 @@
 
             // Message was sent
             if (msg == 'OK') {
+                $('.submit').attr("disabled", false);
                $('#image-loader').fadeOut();
                $('#message-warning').hide();
-               $('#contactForm').fadeOut();
-               $('#message-success').fadeIn();   
+               $('#message-success').fadeIn();
+
             }
             // There was an error
             else {
+            $('.submit').attr("disabled", false);
+            $('#message-success').fadeOut();
                $('#image-loader').fadeOut();
                $('#message-warning').html(msg);
 	            $('#message-warning').fadeIn();
+
             }
 
 	      }
@@ -178,11 +184,3 @@
 
 
 });
-
-
-
-
-
-
-
-
